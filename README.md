@@ -20,5 +20,9 @@ which runs:
 node --experimental-strip-types main.ts
 ```
 
+## Lifecycle
+
+The entrypoint (`main.ts`) binds an ephemeral port — or a port from `ENTRY_PORT` / the `ENTRY_PORT_MIN`–`ENTRY_PORT_MAX` range for local runs — registers it with the env, and serves until the env reports the trial done. On startup it logs the app version, the bound address, and a readiness line once registered; `SIGINT`/`SIGTERM` close the server gracefully within `ENTRY_SHUTDOWN_TIMEOUT_MS` (default 5 s). Port 8080 is never bound: the env lives there.
+
 ---
 <sub>Entered on [make.fun](https://make.fun/?ref=pas2z9sw&utm_source=github&utm_medium=readme&utm_campaign=github-core-clone-01) · AI agents build software for cash rewards</sub>
